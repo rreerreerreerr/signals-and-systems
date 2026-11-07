@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>آجرهای سازندهٔ سیگنال | آزمایشگاه سیگنال و سیستم</title>
+<meta name="description" content="تابع نمایی حقیقی و مختلط، هارمونیک‌ها، ضربهٔ واحد و پلهٔ واحد با شبیه‌ساز تعاملی">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' rx='6' fill='%23b5401f'/%3E%3Cpath d='M3 14c3-10 6-10 9 0s6 10 9 0 3-6 4-4' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<script defer src="assets/vendor/katex/katex.min.js"></script>
+<script defer src="assets/vendor/katex/auto-render.min.js"></script>
+<script defer src="assets/lib.js"></script>
+<script defer src="assets/labs/ch2.js"></script>
+</head>
+<body data-ch="ch2">
+<div class="page">
+<main>
+<p class="kicker">فصل ۲</p>
+<h1>آجرهای سازندهٔ سیگنال</h1>
+<p class="lead">سیگنال‌های پیچیده را مثل لگو از قطعه‌های ساده می‌سازیم. سه قطعهٔ اصلی این‌ها هستند: <b>نمایی</b>، <b>ضربه</b> و <b>پله</b>. کتاب نمایی را «پادشاه توابع» می‌نامد، و بعد از فصل ۶ می‌فهمی چرا.</p>
+
+<h2>نمایی حقیقی</h2>
+<p>در زمان پیوسته $x(t)=Ce^{at}$ است و علامت $a$ رشد یا میرایی را تعیین می‌کند. در زمان گسسته $x[n]=C\alpha^n$ را داریم. یک رفتار جدید هم اضافه می‌شود: اگر $\alpha$ منفی باشد، علامت در هر گام عوض می‌شود.</p>
+<div class="lab" data-lab="real-exp" data-title="نمایی حقیقی پیوسته و گسسته" data-ref="بخش ۲.۲.۱"></div>
+
+<h2>نمایی مختلط</h2>
+<p>وقتی نما مختلط شود، $s=\sigma+j\omega$، تابع نمایی دو کار با هم می‌کند: اندازه را با $\sigma$ تغییر می‌دهد و با $\omega$ می‌چرخد.</p>
+<div class="eq-box">$$e^{(\sigma+j\omega)t}=e^{\sigma t}\big(\cos\omega t+j\sin\omega t\big)$$</div>
+<p>پس کسینوس و سینوس فقط سایهٔ یک حرکت چرخشی روی دو محور هستند. به همین دلیل می‌توانیم آن‌ها را با نمایی بنویسیم:</p>
+<div class="eq-box">$$\cos\omega_0t=\tfrac12\big(e^{j\omega_0t}+e^{-j\omega_0t}\big),\qquad \sin\omega_0t=\tfrac{1}{2j}\big(e^{j\omega_0t}-e^{-j\omega_0t}\big)$$</div>
+<div class="lab" data-lab="complex-exp" data-title="مارپیچ در صفحهٔ مختلط" data-ref="بخش ۲.۲.۲">
+<p>امتحان کن</p><ul><li>با $\sigma=0$ نقطه روی دایره می‌ماند. دو نمودار سمت دیگر همان کسینوس و سینوس‌اند.</li><li>$\omega$ را منفی کن. چرخش برعکس می‌شود. بخش حقیقی عوض می‌شود؟ بخش موهومی چطور؟</li></ul></div>
+
+<h2>هارمونیک‌ها</h2>
+<p>خانوادهٔ $\Phi_k(t)=e^{jk\omega_0t}$ برای $k$ صحیح را <b>هارمونیک</b> می‌گوییم. هر عضو $k$ برابر سریع‌تر از پایه می‌چرخد، و همگی بعد از $T_0=2\pi/\omega_0$ به نقطهٔ شروع برمی‌گردند. پس هر ترکیبی از آن‌ها هم با دورهٔ $T_0$ متناوب است. این ایده ستون فصل ۶ است.</p>
+<div class="lab" data-lab="harmonics" data-title="چرخ‌های هارمونیک" data-ref="بخش ۲.۲.۲.۲"></div>
+
+<h2>نمایی گسسته: فرق بزرگ</h2>
+<p>برای $e^{j\Omega n}$ چون $n$ صحیح است، $\Omega$ و $\Omega+2\pi$ <b>دقیقاً یک سیگنال</b> می‌سازند. پس فرکانس گسسته فقط یک بازه به طول $2\pi$ دارد. کندترین حالت نزدیک $0$ و سریع‌ترین حالت در $\Omega=\pi$ است.</p>
+<div class="lab" data-lab="dt-alias" data-title="بالاتر از π دوباره کند می‌شود" data-ref="بخش ۲.۲.۲.۳">
+<p>امتحان کن</p><ul><li>دکمه‌های $\pi/4$ و $\pi/4+2\pi$ را پشت سر هم بزن. نقطه‌ها عوض نمی‌شوند.</li><li>اسلایدر را آرام از $0$ تا $2\pi$ ببر و سرعت ظاهری نوسان را دنبال کن.</li></ul></div>
+
+<h2>ضربهٔ واحد</h2>
+<p>ضربهٔ گسسته ساده است: $\delta[n]$ فقط در $n=0$ برابر ۱ است. ضربهٔ پیوسته $\delta(t)$ یک تابع معمولی نیست. آن را حد یک پالس با مساحت ۱ در نظر می‌گیریم که باریک و بلند می‌شود. مهم‌ترین خاصیتش <b>غربال</b> است:</p>
+<div class="eq-box">$$\int_{-\infty}^{\infty}x(t)\delta(t-t_0)\,dt=x(t_0),\qquad \sum_{n}x[n]\delta[n-n_0]=x[n_0]$$</div>
+<div class="lab" data-lab="impulse-limit" data-title="ضربه به‌عنوان حد پالس باریک" data-ref="بخش ۲.۳ و تمرین‌های ۲.۱۱ و ۲.۱۴">
+<p>امتحان کن</p><ul><li>$\Delta$ را کم کن و ببین انتگرال چطور به $x(t_0)$ می‌رسد.</li><li>ارتفاع پالس بالا می‌رود ولی مساحتش ثابت می‌ماند.</li></ul></div>
+
+<h2>پلهٔ واحد و لگوسازی</h2>
+<p>پله $u(t)$ برای $t<0$ صفر و برای $t>0$ یک است. پله و ضربه به هم تبدیل می‌شوند:</p>
+<div class="eq-box">$$u(t)=\int_{-\infty}^{t}\delta(\tau)d\tau,\quad \delta(t)=\frac{du(t)}{dt},\qquad u[n]=\sum_{k=-\infty}^{n}\delta[k],\quad \delta[n]=u[n]-u[n-1]$$</div>
+<p>با چند پلهٔ شیفت‌خورده می‌شود هر سیگنال تکه‌ای ثابت را ساخت. مشتق چنین سیگنالی هم همان تعداد ضربه است، با وزن پرش‌ها.</p>
+<div class="lab" data-lab="lego" data-title="لگوی پله‌ها" data-ref="تمرین‌های ۲.۱۷ و ۲.۱۸"></div>
+<div class="lab" data-lab="running-sum" data-title="جمع انباشته و تفاضل در زمان گسسته" data-ref="بخش ۲.۴.۲"></div>
+
+<h2>آزمونک فصل ۲</h2>
+<div class="quiz" data-quiz="ch2"></div>
+</main>
+</div>
+</body>
+</html>

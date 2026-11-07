@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>سری فوریه پیوسته | آزمایشگاه سیگنال و سیستم</title>
+<meta name="description" content="هارمونی، چرخ‌های فوریه، پدیدهٔ گیبس، ضرب داخلی، خواص سری فوریه و عبور از سیستم LTI">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' rx='6' fill='%23b5401f'/%3E%3Cpath d='M3 14c3-10 6-10 9 0s6 10 9 0 3-6 4-4' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<script defer src="assets/vendor/katex/katex.min.js"></script>
+<script defer src="assets/vendor/katex/auto-render.min.js"></script>
+<script defer src="assets/lib.js"></script>
+<script defer src="assets/labs/ch6.js"></script>
+</head>
+<body data-ch="ch6">
+<div class="page">
+<main>
+<p class="kicker">فصل ۶</p>
+<h1>سری فوریه پیوسته</h1>
+<p class="lead">ادعای فوریه این بود: هر سیگنال متناوبی را می‌شود از جمع هارمونیک‌ها ساخت. این کار فقط یک فرمول نیست. یک <b>حوزهٔ جدید</b> به ما می‌دهد که در آن کار با سیستم‌های LTI به یک ضرب ساده تبدیل می‌شود.</p>
+
+<h2>موج و هارمونی</h2>
+<p>سیم ساز همزمان با چند فرکانس می‌لرزد: فرکانس پایه و مضرب‌های صحیح آن. گوش ما ترکیب این‌ها را به‌عنوان رنگ صدا می‌شنود. با همین ترکیب می‌شود شکل موج‌های متفاوتی ساخت.</p>
+<div class="lab" data-lab="harmony" data-title="سینت‌سایزر هارمونیک: گوش بده" data-ref="بخش ۶.۱ و ۶.۲">
+<p>امتحان کن</p><ul><li>صدا را روشن کن و میله‌ها را بکش. مدتی بعد با چشم هم می‌توانی حدس بزنی چه صدایی می‌شنوی.</li><li>مربعی و اره‌ای را با هم مقایسه کن. مربعی فقط هارمونیک فرد دارد و توخالی‌تر به گوش می‌رسد.</li></ul></div>
+
+<h2>قضیهٔ فوریه</h2>
+<p>سیگنال متناوب با دورهٔ $T$ و فرکانس پایهٔ $\omega_0=2\pi/T$ را می‌نویسیم:</p>
+<div class="eq-box">$$x(t)=\sum_{k=-\infty}^{\infty}a_ke^{jk\omega_0t}\quad\text{(سنتز)},\qquad a_k=\frac{1}{T}\int_{T}x(t)e^{-jk\omega_0t}dt\quad\text{(تحلیل)}$$</div>
+<p>هر $a_k$ یک چرخ با شعاع و فاز مشخص است که با سرعت $k\omega_0$ می‌چرخد. این چرخ‌ها را سر هم بگذار: نوک آخرین چرخ دقیقاً سیگنال را رسم می‌کند.</p>
+<div class="lab" data-lab="epicycles" data-title="سیگنال از جمع چرخ‌ها" data-ref="بخش ۶.۴ و تمرین‌های ۶.۱۳ تا ۶.۱۵">
+<p>امتحان کن</p><ul><li>با $N=1$ شروع کن و یکی‌یکی زیاد کن.</li><li>موج مثلثی خیلی زود شبیه خودش می‌شود ولی مربعی نه. علتش این است که ضرایب مثلثی با $1/k^2$ و مربعی با $1/k$ کم می‌شوند.</li></ul></div>
+
+<h3>شرایط دیریکله</h3>
+<p>سری فوریه وقتی به سیگنال همگرا می‌شود که روی یک دوره این سه شرط برقرار باشد. نقطهٔ مهم: نقض این شرایط خیلی نادر است و بیشتر سیگنال‌های عملی آن‌ها را دارند.</p>
+<table class="tbl"><tr><th>شرط</th><th>مثال ناقض</th></tr>
+<tr><td>انتگرال قدرمطلق روی یک دوره متناهی باشد</td><td>$x(t)=1/t$ روی $0<t\le1$</td></tr>
+<tr><td>تعداد بیشینه و کمینه‌ها متناهی باشد</td><td>$x(t)=\sin(3\pi/4t)$ روی $0<t\le1$ (تمرین ۶.۳)</td></tr>
+<tr><td>تعداد ناپیوستگی‌ها متناهی باشد و هرکدام محدود</td><td>تابعی که در $t=1/n$ برای هر $n$ پرش دارد (تمرین ۶.۴)</td></tr></table>
+<p class="takeaway"><b>یک نکته دربارهٔ کتاب:</b> تمرین ۶.۲ می‌گوید $\ln t$ روی $(0,1]$ شرط اول را نقض می‌کند، ولی این انتگرال در واقع متناهی است: $\int_0^1|\ln t|\,dt=1$. برای همین در جدول بالا از $1/t$ استفاده کرده‌ایم که انتگرالش واقعاً واگراست.</p>
+
+<h2>پدیدهٔ گیبس</h2>
+<p>سیگنال پرش‌دار را با جمع توابع نرم می‌سازیم، پس کنار پرش همیشه مشکل داریم. با زیاد شدن جمله‌ها خطای کلی به صفر می‌رود، ولی یک قلهٔ حدود ۹٪ کنار پرش باقی می‌ماند و فقط باریک‌تر می‌شود.</p>
+<div class="lab" data-lab="gibbs" data-title="فراجهش ۹٪ از بین نمی‌رود" data-ref="بخش ۶.۷"></div>
+
+<h2>فضای هیلبرت: فوریه به زبان بردار</h2>
+<p>یک بردار را با تصویر کردن روی پایه‌های متعامد به مختصات تبدیل می‌کنیم. سری فوریه دقیقاً همان کار است: تابع یک بردار در فضایی با بی‌نهایت بُعد است. پایه‌ها $\Phi_k=e^{jk\omega_0t}$ هستند و ضرب داخلی از این قرار است:</p>
+<div class="eq-box">$$\langle x,\Phi_k\rangle=\frac1T\int_Tx(t)\Phi_k^*(t)\,dt=a_k,\qquad \langle\Phi_k,\Phi_l\rangle=\begin{cases}1&k=l\\0&k\ne l\end{cases}$$</div>
+<div class="lab" data-lab="vector-projection" data-title="تصویر روی پایه‌ها در دو بعد" data-ref="تمرین ۶.۵"></div>
+<div class="lab" data-lab="analysis-eq" data-title="معادلهٔ تحلیل: سیگنال را در هر پایه ضرب کن" data-ref="بخش ۶.۵ و تمرین‌های ۶.۶ و ۶.۷">
+<p>امتحان کن</p><ul><li>برای $\cos2\omega_0t$ مقدار $k$ را عوض کن. مساحت خالص فقط برای $k=\pm2$ غیرصفر می‌شود، یعنی تعامد.</li><li>در تمرین ۶.۷ ببین چرا $a_1$ مختلط است و $|a_1|=1/\sqrt2$.</li></ul></div>
+
+<h2>قطار پالس: رابطهٔ زمان و فرکانس</h2>
+<p>تمرین ۶.۸ مهم‌ترین مثال این فصل است:</p>
+<div class="eq-box">$$a_0=\frac{2T_0}{T},\qquad a_k=\frac{\sin(k\omega_0T_0)}{k\pi}$$</div>
+<div class="lab" data-lab="pulse-train" data-title="قطار پالس و پوش سینک" data-ref="تمرین ۶.۸"></div>
+<div class="lab" data-lab="draw-fs" data-title="سیگنال خودت را بکش" data-ref="بخش ۶.۴"></div>
+
+<h2>خواص سری فوریه</h2>
+<table class="tbl"><tr><th>عمل در زمان</th><th>اثر روی ضرایب</th></tr>
+<tr><td>$Ax+By$</td><td>$Aa_k+Bb_k$</td></tr><tr><td>$x(t-t_0)$</td><td>$a_ke^{-jk\omega_0t_0}$</td></tr>
+<tr><td>$x(-t)$</td><td>$a_{-k}$</td></tr><tr><td>$x(\alpha t)$</td><td>همان $a_k$ با فرکانس پایهٔ $\alpha\omega_0$</td></tr>
+<tr><td>$dx/dt$</td><td>$jk\omega_0a_k$</td></tr><tr><td>کانولوشن دوره‌ای</td><td>$Ta_kb_k$</td></tr>
+<tr><td>$x(t)y(t)$</td><td>$\sum_la_lb_{k-l}$</td></tr><tr><td>پارسوال</td><td>$\frac1T\int_T|x|^2dt=\sum_k|a_k|^2$</td></tr></table>
+<div class="lab" data-lab="fs-props" data-title="خواص را ببین، حفظ نکن" data-ref="بخش ۶.۸ و تمرین ۶.۱۱"></div>
+<p>شکل مثلثاتی هم همین اطلاعات را دارد. برای سیگنال حقیقی $x(t)=a_0+2\sum_{k\ge1}\big(\mathrm{Re}\,a_k\cos k\omega_0t-\mathrm{Im}\,a_k\sin k\omega_0t\big)$. پس سیگنال زوج فقط کسینوس دارد و سیگنال فرد فقط سینوس.</p>
+
+<h2>عبور از سیستم LTI</h2>
+<p>این دلیل اصلی ارزش فوریه است. نمایی مختلط <b>ویژه‌تابع</b> سیستم LTI است و خروجی همان نمایی با ضریب مختلط می‌شود:</p>
+<div class="eq-box">$$e^{j\omega t}\ \to\ H(j\omega)e^{j\omega t},\qquad H(j\omega)=\int_{-\infty}^{\infty}h(\tau)e^{-j\omega\tau}d\tau\quad\Longrightarrow\quad b_k=a_kH(jk\omega_0)$$</div>
+<p>پس به جای کانولوشن، کافی است هر ضریب را در یک عدد ضرب کنیم.</p>
+<div class="lab" data-lab="lti-periodic" data-title="سیگنال متناوب از فیلتر می‌گذرد" data-ref="بخش ۶.۶ و تمرین ۶.۱۶">
+<p>امتحان کن</p><ul><li>موج مربعی را از پایین‌گذر با $a$ کوچک رد کن. شکل خروجی آشناست: شارژ و دشارژ خازن.</li><li>ورودی فقط کسینوس را انتخاب کن: خروجی هم فقط کسینوس است با دامنه و فاز جدید.</li></ul></div>
+
+<h2>آزمونک فصل ۶</h2>
+<div class="quiz" data-quiz="ch6"></div>
+</main>
+</div>
+</body>
+</html>

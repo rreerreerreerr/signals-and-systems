@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>تبدیل فوریه پیوسته | آزمایشگاه سیگنال و سیستم</title>
+<meta name="description" content="گذر از سری فوریه به تبدیل فوریه، طیف، پاسخ فرکانسی و تبدیل فوریهٔ سیگنال‌های متناوب با آزمایشگاه تعاملی">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' rx='6' fill='%23b5401f'/%3E%3Cpath d='M3 14c3-10 6-10 9 0s6 10 9 0 3-6 4-4' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<script defer src="assets/vendor/katex/katex.min.js"></script>
+<script defer src="assets/vendor/katex/auto-render.min.js"></script>
+<script defer src="assets/lib.js"></script>
+<script defer src="assets/labs/ch8.js"></script>
+</head>
+<body data-ch="ch8">
+<div class="page">
+<main>
+<p class="kicker">فصل ۸ (تا بخش ۸.۷)</p>
+<h1>تبدیل فوریه پیوسته</h1>
+<p class="lead">سری فوریه فقط برای سیگنال متناوب است. ترفند این است: سیگنال غیرمتناوب را سیگنال متناوبی با دورهٔ بی‌نهایت در نظر می‌گیریم. آن وقت خط‌های گسستهٔ طیف به یک منحنی پیوسته تبدیل می‌شوند.</p>
+
+<h2>از سری به تبدیل</h2>
+<p>سیگنال $x(t)$ با طول محدود را با دورهٔ $T$ تکرار می‌کنیم تا $\tilde x(t)$ به دست آید. حالا $Ta_k$ را تعریف می‌کنیم:</p>
+<div class="eq-box">$$Ta_k=\int_{-T/2}^{T/2}\tilde x(t)e^{-jk\omega_0t}dt=X(jk\omega_0)$$</div>
+<p>با $T\to\infty$ فاصلهٔ خط‌ها $\omega_0\to0$ می‌رود، جمع به انتگرال تبدیل می‌شود و به زوج تبدیل فوریه می‌رسیم:</p>
+<div class="eq-box">$$X(j\omega)=\int_{-\infty}^{\infty}x(t)e^{-j\omega t}dt,\qquad x(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}X(j\omega)e^{j\omega t}d\omega$$</div>
+<div class="lab" data-lab="fs-to-ft" data-title="پالس‌ها را از هم دور کن" data-ref="بخش ۸.۱">
+<p>امتحان کن</p><ul><li>اسلایدر را آرام زیاد کن و خط‌ها را تماشا کن: ارتفاع $Ta_k$ تغییری نمی‌کند، فقط خط‌های بیشتری می‌آیند.</li><li>نمودار پایین دلیل ضرب کردن در $T$ را نشان می‌دهد: بدون آن همه‌چیز به صفر می‌رود.</li></ul></div>
+
+<h2>طیف سیگنال‌های پایه</h2>
+<p>شرایط دیریکله این‌جا هم هستند، ولی روی کل محور زمان. سیگنال باید انتگرال‌پذیر مطلق باشد، و ضربه‌ها را به‌عنوان حالت خاص می‌پذیریم.</p>
+<table class="tbl"><tr><th>$x(t)$</th><th>$X(j\omega)$</th><th>تمرین</th></tr>
+<tr><td>$e^{-at}u(t)$</td><td>$1/(a+j\omega)$</td><td>۸.۶</td></tr>
+<tr><td>$e^{-a|t|}$</td><td>$2a/(a^2+\omega^2)$</td><td>۸.۲</td></tr>
+<tr><td>$\delta(t-t_0)$</td><td>$e^{-j\omega t_0}$</td><td>۸.۳</td></tr>
+<tr><td>پالس $|t|<T_1$</td><td>$2\sin(\omega T_1)/\omega$</td><td>۸.۴</td></tr>
+<tr><td>$\sin(Wt)/(\pi t)$</td><td>پالس $|\omega|<W$</td><td>۸.۵</td></tr></table>
+<div class="lab" data-lab="ft-explorer" data-title="کاوشگر تبدیل فوریه" data-ref="بخش ۸.۳ تا ۸.۵ و تمرین‌های ۸.۲ تا ۸.۵">
+<p>امتحان کن</p><ul><li>به پالس و سینک با هم نگاه کن. این دوگانی زمان و فرکانس است.</li><li>شیفت را تغییر بده. نمودار اندازه تکان نمی‌خورد.</li></ul></div>
+
+<h2>محتوای فرکانسی و بازسازی</h2>
+<p>اندازهٔ طیف می‌گوید هر فرکانس چقدر در سیگنال حضور دارد. سیگنالی که طیفش بیرون از یک بازه صفر است را <b>باند محدود</b> می‌گوییم. برای دیدن معنی این حرف، سیگنال را فقط با بخشی از طیفش می‌سازیم.</p>
+<div class="lab" data-lab="inverse-synth" data-title="بازسازی با باند محدود" data-ref="بخش ۸.۵"></div>
+
+<h2>پاسخ فرکانسی</h2>
+<p>$H(j\omega)$ تبدیل فوریهٔ پاسخ ضربه است. اندازه‌اش می‌گوید سیستم هر فرکانس را چند برابر می‌کند و فازش می‌گوید چقدر جابه‌جا می‌کند. برای سیستم $h(t)=e^{-at}u(t)$:</p>
+<div class="eq-box">$$H(j\omega)=\frac{1}{a+j\omega},\quad |H(j\omega)|=\frac{1}{\sqrt{a^2+\omega^2}},\quad \angle H(j\omega)=-\tan^{-1}\frac{\omega}{a}$$</div>
+<div class="lab" data-lab="freq-response" data-title="بهره و فاز را روی موج ببین" data-ref="بخش ۸.۶ و تمرین ۸.۶"></div>
+
+<h2>کانولوشن در زمان، ضرب در فرکانس</h2>
+<p>برای سیگنال غیرمتناوب هم همان نتیجهٔ فصل ۶ را داریم: $Y(j\omega)=H(j\omega)X(j\omega)$. این آزمایشگاه طیف را محاسبه می‌کند، با $H$ ضرب می‌کند، و به زمان برمی‌گرداند.</p>
+<div class="lab" data-lab="filter-aperiodic" data-title="فیلتر کردن یک پالس در حوزهٔ فرکانس" data-ref="بخش ۸.۶">
+<p>امتحان کن</p><ul><li>پالس با لرزش را از پایین‌گذر رد کن و گوشه را از زیر فرکانس لرزش، یعنی $\omega=18$، عبور بده.</li><li>فیلتر ایده‌آل را با مرتبه اول مقایسه کن. به لبه‌ها نگاه کن.</li></ul></div>
+
+<h2>سیگنال متناوب در تبدیل فوریه</h2>
+<p>سیگنال متناوب انتگرال‌پذیر مطلق نیست، ولی با کمک ضربه در فرکانس می‌توان تبدیلش را نوشت. هر خط طیف یک ضربه است. این نقطه همان جایی است که دو ابزار سری و تبدیل در هم ادغام می‌شوند:</p>
+<div class="eq-box">$$x(t)=\sum_ka_ke^{jk\omega_0t}\quad\longleftrightarrow\quad X(j\omega)=\sum_k2\pi a_k\,\delta(\omega-k\omega_0)$$</div>
+<div class="lab" data-lab="periodic-ft" data-title="خط‌های طیف به‌صورت ضربه" data-ref="بخش ۸.۷ و تمرین‌های ۸.۷ تا ۸.۹"></div>
+
+<h2>آزمونک فصل ۸</h2>
+<div class="quiz" data-quiz="ch8"></div>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>خواص سیستم‌ها | آزمایشگاه سیگنال و سیستم</title>
+<meta name="description" content="اتصال سیستم‌ها، آزمون خودکار خواص سیستم، بلوک‌های پایه و مدل نورون">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' rx='6' fill='%23b5401f'/%3E%3Cpath d='M3 14c3-10 6-10 9 0s6 10 9 0 3-6 4-4' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<script defer src="assets/vendor/katex/katex.min.js"></script>
+<script defer src="assets/vendor/katex/auto-render.min.js"></script>
+<script defer src="assets/lib.js"></script>
+<script defer src="assets/labs/ch3.js"></script>
+</head>
+<body data-ch="ch3">
+<div class="page">
+<main>
+<p class="kicker">فصل ۳</p>
+<h1>خواص سیستم‌ها</h1>
+<p class="lead">سیستم نگاشتی از سیگنال ورودی به خروجی است. اگر بدانیم یک سیستم چه خواصی دارد، ابزارهای بسیار قوی‌تری برای تحلیلش خواهیم داشت. مهم‌ترین نتیجهٔ این فصل تعریف دقیق «LTI» است که بقیهٔ درس بر آن بنا می‌شود.</p>
+
+<h2>اتصال سیستم‌ها</h2>
+<p>سیستم‌های بزرگ از زیرسیستم‌ها ساخته می‌شوند. در اتصال <b>سری</b> خروجی یکی ورودی بعدی است و در اتصال <b>موازی</b> خروجی‌ها جمع می‌شوند. در اتصال <b>فیدبک</b> هم خروجی به ورودی برمی‌گردد، که آن را در فصل ۵ شبیه‌سازی می‌کنیم.</p>
+<div class="lab" data-lab="connect" data-title="سری و موازی: آیا ترتیب مهم است؟" data-ref="بخش ۳.۲ و مسئلهٔ ۳.۱">
+<p>امتحان کن</p><ul><li>مربع و تأخیر: ترتیب فرقی دارد؟ حالا $n\cdot x[n]$ و تأخیر را امتحان کن.</li><li>دو سیستم LTI مثل تأخیر و تفاضل بگذار. جواب عوض می‌شود؟</li></ul></div>
+
+<h2>شش خاصیت اصلی</h2>
+<table class="tbl"><tr><th>خاصیت</th><th>معنی</th><th>نمونهٔ دارا</th><th>نمونهٔ فاقد</th></tr>
+<tr><td>بی‌حافظه</td><td>خروجی فقط به ورودی همان لحظه بستگی دارد</td><td>$y=x^2+1$</td><td>$y[n]=x[n-1]$</td></tr>
+<tr><td>علّی</td><td>خروجی به آیندهٔ ورودی بستگی ندارد</td><td>$y[n]=x[n]-x[n-1]$</td><td>$y[n]=x[n+1]$</td></tr>
+<tr><td>وارون‌پذیر</td><td>از خروجی می‌توان به ورودی رسید</td><td>$y=0.5x+3$</td><td>$y=\cos x$</td></tr>
+<tr><td>پایدار BIBO</td><td>ورودی کران‌دار خروجی کران‌دار می‌دهد</td><td>$y=Ae^{x}$</td><td>انباشتگر</td></tr>
+<tr><td>تغییرناپذیر با زمان</td><td>شیفت ورودی فقط خروجی را شیفت می‌دهد</td><td>$y=\cos x$</td><td>$y=tx$</td></tr>
+<tr><td>خطی</td><td>جمع آثار برقرار است</td><td>$y=tx$</td><td>$y=ax+b$</td></tr></table>
+<p>این آزمایشگاه هر سیستمی را که بدهی، با سیگنال‌های تصادفی امتحان می‌کند. این آزمون عددی است: یک «خیر» اثبات قطعی است چون یک مثال نقض پیدا کرده، ولی «بله» فقط یعنی مثال نقضی پیدا نشد. در امتحان باید برهان بنویسی.</p>
+<div class="lab" data-lab="property-tester" data-title="آزمایشگر خواص سیستم" data-ref="بخش ۳.۳ و تمرین‌های ۳.۲ تا ۳.۱۷">
+<p>امتحان کن</p><ul><li>روی هر کارت کلیک کن تا ببینی آزمون چطور انجام شده.</li><li>$y[n]=2x[n]+3$ خطی نیست، با اینکه شکلش خط است. نمودار را ببین.</li><li>خودت بنویس: <code dir="ltr">x[n]*x[n-1]</code> یا <code dir="ltr">sin(x[n])</code> یا <code dir="ltr">x[-n]</code>. قبل از نگاه کردن حدس بزن.</li></ul></div>
+
+<h2>بلوک‌های پایه</h2>
+<p>هر سیستم LTI را می‌توان با چند بلوک ساده ساخت: ضرب‌کنندهٔ اسکالر، جمع‌کننده، انتگرال‌گیر و مشتق‌گیر در پیوسته، و تأخیر و پیش‌برنده در گسسته. ضرب‌کنندهٔ دو سیگنال هم هست، که برای مدولاسیون به کار می‌رود.</p>
+<div class="lab" data-lab="blocks-ops" data-title="هر بلوک با سیگنال چه می‌کند؟" data-ref="بخش ۳.۴"></div>
+
+<h2>نورون: یک مثال غیرخطی</h2>
+<p>مدل رُزنبلات نورون را این‌طور ساده می‌کند: ورودی‌ها با وزن جمع می‌شوند و اگر حاصل از آستانه گذشت، نورون شلیک می‌کند.</p>
+<div class="eq-box">$$y=u\Big(\sum_{i}w_ix_i-\theta\Big)$$</div>
+<div class="lab" data-lab="neuron" data-title="پرسپترون: گیت منطقی با یک نورون" data-ref="بخش ۳.۲.۳.۲">
+<p>امتحان کن</p><ul><li>AND و OR را بساز.</li><li>حالا سعی کن XOR بسازی. نمی‌شود! چرا؟</li></ul></div>
+
+<h2>آزمونک فصل ۳</h2>
+<div class="quiz" data-quiz="ch3"></div>
+</main>
+</div>
+</body>
+</html>

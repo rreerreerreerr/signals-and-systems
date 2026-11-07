@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>سری فوریه گسسته | آزمایشگاه سیگنال و سیستم</title>
+<meta name="description" content="سری فوریه زمان گسسته، فضای N بعدی، خواص و سیستم‌های LTI گسسته با آزمایشگاه تعاملی">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' rx='6' fill='%23b5401f'/%3E%3Cpath d='M3 14c3-10 6-10 9 0s6 10 9 0 3-6 4-4' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<script defer src="assets/vendor/katex/katex.min.js"></script>
+<script defer src="assets/vendor/katex/auto-render.min.js"></script>
+<script defer src="assets/lib.js"></script>
+<script defer src="assets/labs/ch7.js"></script>
+</head>
+<body data-ch="ch7">
+<div class="page">
+<main>
+<p class="kicker">فصل ۷</p>
+<h1>سری فوریه گسسته</h1>
+<p class="lead">همان ایدهٔ فصل ۶ است با یک تفاوت خوشایند: اینجا فقط $N$ هارمونیک متفاوت داریم. پس جمع متناهی است، بازسازی دقیق است، و همگرایی مسئله‌ای ندارد. کامپیوتر هم دقیقاً همین را حساب می‌کند.</p>
+
+<h2>چرا فقط $N$ پایه؟</h2>
+<p>برای $\Phi_k[n]=e^{jk(2\pi/N)n}$ داریم $\Phi_{k+N}[n]=\Phi_k[n]$. یعنی پایه‌ها پس از $N$ تا تکرار می‌شوند. پس سیگنال متناوب با دورهٔ $N$ در فضایی $N$ بعدی زندگی می‌کند:</p>
+<div class="eq-box">$$x[n]=\sum_{k=\langle N\rangle}a_ke^{jk\omega_0n},\qquad a_k=\frac1N\sum_{n=\langle N\rangle}x[n]e^{-jk\omega_0n},\qquad \omega_0=\frac{2\pi}{N}$$</div>
+<p>نماد $\langle N\rangle$ یعنی هر $N$ نمونهٔ پشت سر هم. ضرایب هم متناوب‌اند: $a_{k+N}=a_k$.</p>
+<div class="lab" data-lab="orth-matrix" data-title="جدول تعامد پایه‌ها" data-ref="بخش ۷.۲">
+<p>امتحان کن</p><ul><li>روی قطر اصلی و بیرون آن کلیک کن.</li><li>خانه‌های آبی بیرون قطر را پیدا کن. چرا $k$ و $k+N$ یکی‌اند؟</li></ul></div>
+
+<h2>تحلیل و سنتز با دست خودت</h2>
+<div class="lab" data-lab="dfs-editor" data-title="ویرایشگر سری فوریه گسسته" data-ref="بخش ۷.۱ و ۷.۲ و تمرین‌های ۷.۱ تا ۷.۳">
+<p>امتحان کن</p><ul><li>نمونه‌ها را تغییر بده و طیف را ببین.</li><li>$M$ را از ۱ تا $N$ بالا ببر: با آخرین ضریب، خطا دقیقاً صفر می‌شود.</li><li>سیگنال تمرین ۷.۱ فقط دو ضریب غیرصفر دارد. آن‌ها را پیدا کن.</li></ul></div>
+
+<h2>موج مربعی گسسته</h2>
+<p>برای موجی با نیم‌پهنای $N_1$ در دورهٔ $N$ (تمرین ۷.۳)، ضرایب به شکل نسبت دو سینوس هستند. این همتای گسستهٔ سینک است و نامش را گاهی هستهٔ دیریکله می‌گذارند:</p>
+<div class="eq-box">$$a_k=\frac1N\,\frac{\sin\big(2\pi k(N_1+\tfrac12)/N\big)}{\sin(\pi k/N)},\quad k\ne0,\pm N,\ldots\qquad a_0=\frac{2N_1+1}{N}$$</div>
+<div class="lab" data-lab="dt-square" data-title="طیف موج مربعی گسسته" data-ref="تمرین ۷.۳"></div>
+
+<h2>خواص</h2>
+<p>خواص بیشتر مانند حالت پیوسته‌اند، ولی همهٔ جمع‌ها روی یک دوره انجام می‌شوند.</p>
+<table class="tbl"><tr><th>عمل در زمان</th><th>اثر روی ضرایب</th></tr>
+<tr><td>$x[n-n_0]$</td><td>$a_ke^{-jk\omega_0n_0}$</td></tr>
+<tr><td>$x[n]-x[n-1]$</td><td>$(1-e^{-jk\omega_0})a_k$</td></tr>
+<tr><td>$\sum_{r=\langle N\rangle}x[r]y[n-r]$</td><td>$Na_kb_k$</td></tr>
+<tr><td>$x[n]y[n]$</td><td>$\sum_{l=\langle N\rangle}a_lb_{k-l}$</td></tr>
+<tr><td>پارسوال</td><td>$\frac1N\sum_{n=\langle N\rangle}|x[n]|^2=\sum_{k=\langle N\rangle}|a_k|^2$</td></tr></table>
+<div class="lab" data-lab="dt-props" data-title="قانون را با اندازه‌گیری بسنج" data-ref="بخش ۷.۳ و تمرین‌های ۷.۶ تا ۷.۱۲"></div>
+
+<h2>سیستم LTI گسسته</h2>
+<p>$e^{j\omega n}$ ویژه‌تابع است و ویژه‌مقدارش تابع تبدیل $H(e^{j\omega})=\sum_nh[n]e^{-j\omega n}$ است. پس:</p>
+<div class="eq-box">$$b_k=a_kH(e^{jk\omega_0})$$</div>
+<p class="takeaway"><b>یک نکته دربارهٔ کتاب:</b> در حل تمرین ۷.۷ معادلهٔ $y[n]+0.5y[n-1]=x[n]$ با علامت منفی به حوزهٔ فرکانس برده شده است. طبق خود معادله، مخرج باید $1+0.5e^{-jk\omega_0}$ باشد. آزمایشگاه زیر هر دو طرف را با شبیه‌سازی مستقیم معادله مقایسه می‌کند و این نسخه درست از آب درمی‌آید.</p>
+<div class="lab" data-lab="dt-lti-periodic" data-title="ضرایب ورودی، تابع تبدیل، ضرایب خروجی" data-ref="بخش ۷.۴ و تمرین‌های ۷.۶، ۷.۷، ۷.۱۳، ۷.۱۴">
+<p>امتحان کن</p><ul><li>تفاضل را روی سیگنالی با میانگین غیرصفر بگذار: $b_0$ باید صفر شود.</li><li>نکتهٔ مهم: عدد «اختلاف با شبیه‌سازی مستقیم» باید صفر باشد. این تأیید می‌کند روش حوزهٔ فرکانس درست است.</li></ul></div>
+
+<h2>آزمونک فصل ۷</h2>
+<div class="quiz" data-quiz="ch7"></div>
+</main>
+</div>
+</body>
+</html>
